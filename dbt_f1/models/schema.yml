@@ -2,20 +2,51 @@
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
+  - name: cleansed_qresults
+    description: "Qualifying Results 2023"
     columns:
-      - name: id
-        description: "The primary key for this table"
-        tests:
-          - unique
-          - not_null
+      - name: track_country
+        description: "Country of track"
+      - name: position
+        description: "Position for each driver at the end of qualifying"
+      - name: driver_number
+        description: "Driver number"
+      - name: driver_name
+        description: "Driver name"
+      - name: team_name
+        description: "Team name"
+      - name: first_qualifying_period
+        description: "Driver result for 1 period"
+      - name: second_qualifying_period
+        description: "Driver result for 2 period"
+      - name: third_qualifying_period
+        description: "Driver result for 3 period"
+      - name: laps
+        description: "Number of laps each driver performed during the whole qualifying"
 
-  - name: my_second_dbt_model
-    description: "A starter dbt model"
+
+  - name: cleansed_rresults
+    description: "Race Results 2023"
     columns:
-      - name: id
-        description: "The primary key for this table"
-        tests:
-          - unique
-          - not_null
+      - name: track_country
+        description: "Country of track"
+      - name: position
+        description: "Position for each driver at the end of qualifying"
+      - name: driver_number
+        description: "Driver number"
+      - name: driver_name
+        description: "Driver name"
+      - name: team_name
+        description: "Team name"
+      - name: starting_grid
+        description: "From which position each driver started the race"
+      - name: laps
+        description: "How many laps each driver raced"
+      - name: finish_time
+        description: "Time for drivers who finished"
+      - name: points
+        description: "How many points each driver received through the race"
+      - name: has_set_fastest_lap
+        description: "boolean, 1 for True, 0 for False"
+      - name: fastest_lap_time
+        description: "For each driver fastest lap during the race"

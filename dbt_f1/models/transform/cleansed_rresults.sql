@@ -1,5 +1,5 @@
 with RAW_RRESULTS as (
-    select * from {{ ref("raw_rresults")}}
+    select * from {{ ref ("raw_rresults")}}
 )
 
 select
@@ -15,6 +15,10 @@ select
     team_name,
     starting_grid,
     laps,
+    -- changed data types from varchar to time
+    -- for the driver who finished first - total time for the race
+    -- for others - number of seconds they were behind the first driver
+    -- for those who didn't start/finish - null
     case
         when finish_time_text like '%:%'
         then finish_time_text ::time
@@ -32,11 +36,13 @@ select
             end
     end as finish_time,
     points,
+    -- changed "Yes" and "No" to 1 and 0 accord.
     case
         when has_set_fastest_lap = 'Yes'
         then 1
         else 0
     end as has_set_fastest_lap,
+    -- changed type from varchar to time
     case
         when regexp_like(fastest_lap_time, '^([0-9]+):([0-9]+)\.([0-9]+)$')
         -- then to_char(to_timestamp(fastest_lap_time, 'MI:SS.FF'), 'HH24:MI:SS.FF3')
