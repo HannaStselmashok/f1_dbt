@@ -1,4 +1,4 @@
-# f1 2023 results data analyses using dbt
+# Dashboards for Ferrari team: 2023 season results
 
 ## Summary
 
@@ -21,7 +21,7 @@ f1dbt\Scripts\activate
 
 I have 2 tables in PostgreSQL. To read it in Pandas dataframe - execute step 1 from [migration.ipynb](migration.ipynb)
 
-![raceresultsPandas](images\raceresultsPandas.png)
+![raceresultsPandas](images/raceresultsPandas.png)
 
 ## Transfer data from PostgreSQL to Snowflake
 
@@ -64,3 +64,61 @@ GRANT ALL ON FUTURE TABLES IN SCHEMA F1.RAW to ROLE transform;
 ```
 
 To Migrate datasets from PostgreSQL to Snowflake - complete step 2 [migration.ipynb](migration.ipynb)
+
+## Connect dbt and Snowflake
+
+```shell
+pip install dbt-snowflake==1.7.2
+dbt init dbt_f1
+```
+
+- account: lkhpmcc-cn69015
+- password: f1dbt
+- role: transform
+- warehouse: COMPUTE_WH
+- database: F1
+- schema: RAW
+- threads: 1
+- user: hannaf1 (in profiles.yml)
+
+```shell
+cd dbt_f1
+dbt debug
+```
+
+## Build dbt data pipelines
+
+Create separate folders for models to represent logical levels
+
+```shel
+mkdir models\staging
+mkdir models\transform
+mkdir models\mart
+```
+
+Modify dbt_project.yml file to reflect model structur. Staging layer will have view materialization, while transform and mart - table
+
+```yaml
+models:
+  dbt_hol:
+      # Applies to all files under models/example/
+      staging:
+          schema: staging
+          materialized: view
+      transform:
+          schema: transform
+          materialized: table
+      mart:
+          schema: mart
+          materialized: mart
+```
+
+### Staging layer
+
+In this layer I slightly modified [rresults](dbt_f1\models\staging\raw_rresults.sql) and [qresults](dbt_f1\models\staging\raw-qresults.sql) by making column names more meaningful. Executed `dbt run`.
+
+![raw_qresults](images\raw_qresults.png)
+
+![raw_rresults](images\raw_rresults.png)
+
+### Transformed layer
