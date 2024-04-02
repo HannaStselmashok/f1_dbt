@@ -7,10 +7,14 @@ models:
     columns:
       - name: track_country
         description: "Country of track"
+        tests:
+          - not_null
       - name: position
         description: "Position for each driver at the end of qualifying"
       - name: driver_number
         description: "Driver number"
+        tests:
+          - not_null
       - name: driver_name
         description: "Driver name"
       - name: team_name
@@ -30,10 +34,14 @@ models:
     columns:
       - name: track_country
         description: "Country of track"
+        tests:
+          - not_null
       - name: position
         description: "Position for each driver at the end of qualifying"
       - name: driver_number
         description: "Driver number"
+        tests:
+          - not_null
       - name: driver_name
         description: "Driver name"
       - name: team_name

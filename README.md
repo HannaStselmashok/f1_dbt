@@ -124,3 +124,15 @@ models:
 **- Seeds.** Uploaded [reces orders](racesOrder2023.csv) to seeds folder. Seeds are usually small datasets in csv format (ex. catalogs). Executed `dbt seed`.
 
 **- Mart layer.** This layer will be accessible for BI tools. I created two files [mart_rresults](dbt_f1\models\mart\mart_rresults.sql) and [mart_qresults](dbt_f1\models\mart\mart_qresults.sql), where join race order with transformed table.
+
+## Running test
+
+**- Generic tests.** In schema.yml added generic test 'not null' for track country and deriver number columns (cleansed_qresults and cleansed_rresults).
+
+**- Singular tests.** In tests folder created files to check position columns for values (from 1 to 20).
+
+## Analyses
+
+In analyses folder created sql files to answer the questions:
+
+- Average position of every racer during the championship; total points, the share of points contributed by the team's lead driver - [average_in_championship]
