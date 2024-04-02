@@ -115,9 +115,9 @@ models:
 
 **- Staging layer.** In this layer I slightly modified [rresults](dbt_f1\models\staging\raw_rresults.sql) and [qresults](dbt_f1\models\staging\raw-qresults.sql) by making column names more meaningful. Executed `dbt run`.
 
-![raw_qresults](images\raw_qresults.png)
+![raw_qresults](images/raw_qresults.png)
 
-![raw_rresults](images\raw_rresults.png)
+![raw_rresults](images/raw_rresults.png)
 
 **- Transformed layer.** In this step I changed data types for columns, replaced letter designations for drivers who didn't start/finish the race for 20 in points, null in time columns. Queries for [cleansed_rresults](dbt_f1\models\transform\cleansed_rresults.sql) and [cleansed_qresults](dbt_f1\models\transform\cleansed_qresults.sql). Executed `dbt run`.
 
