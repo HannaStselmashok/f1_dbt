@@ -136,4 +136,9 @@ models:
 In analyses folder created sql files to answer the questions:
 
 - Average position of every racer during the championship; total points, the share of points contributed by the team's lead driver - [average_in_championship](dbt_f1\analyses\average_in_championship.sql)
+
+![average_points](images/avergae_points.png)
+
 - Driver's championship points for each race; a driver's position in the championship for each race (Ferrari team) - [driver_points](dbt_f1\analyses\driver_points.sql)
+
+![driver_points](images/driver_points.png)
