@@ -25,7 +25,7 @@ I have 2 tables in PostgreSQL. To read it in Pandas dataframe - execute step 1 f
 
 ## Transfer data from PostgreSQL to Snowflake
 
-First of all we need to create database, scema and dbt user in Snowflake
+First of all I created database, scema and dbt user in Snowflake
 
 ```sql
 -- Use an admin role
@@ -88,7 +88,7 @@ dbt debug
 
 ## Build dbt data pipelines
 
-Create separate folders for models to represent logical levels
+Created separate folders for models to represent logical levels
 
 ```shel
 mkdir models\staging
@@ -96,7 +96,7 @@ mkdir models\transform
 mkdir models\mart
 ```
 
-Modify dbt_project.yml file to reflect model structur. Staging layer will have view materialization, while transform and mart - table
+Modified dbt_project.yml file to reflect model structur. Staging layer is having view materialization, while transform and mart - table
 
 ```yaml
 models:
@@ -129,7 +129,7 @@ models:
 
 **- Generic tests.** In schema.yml added generic test 'not null' for track country and deriver number columns (cleansed_qresults and cleansed_rresults).
 
-**- Singular tests.** In tests folder created files to check position columns for values (from 1 to 20).
+**- Singular tests.** In tests folder created files to check position columns for values (from 1 to 20). Executed `dbt test`.
 
 ## Analyses
 
@@ -142,3 +142,12 @@ In analyses folder created sql files to answer the questions:
 - Driver's championship points for each race; a driver's position in the championship for each race (Ferrari team) - [driver_points](dbt_f1\analyses\driver_points.sql)
 
 ![driver_points](images/driver_points.png)
+
+## Vizualization
+
+### Connect to Power BI
+
+- server: lkhpmcc-cn69015.snowflakecomputing.com
+- warehouse: COMPUTE_WH
+- user name: hannaf1
+- password: f1dbt
