@@ -54,4 +54,5 @@ from
 where
     team_name = 'Ferrari'
 order by
-    race_order
+    race_order,
+    driver_name
